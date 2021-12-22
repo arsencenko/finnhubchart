@@ -14,16 +14,22 @@ function App() {
   const valuesEur = useSelector(convertData(symbols[0]));
   const valuesUsd = useSelector(convertData(symbols[1]));
 
+  const options = {
+    animation: {
+      duration: 0
+    }
+  }
+
   const graphEur = useMemo(
     () => ({
       labels: valuesEur.map(x => x.date),
       datasets: [
         {
-          label: "ETHERIUM/EUR",
+          label: "ETHEREUM/EUR",
           data: valuesEur.map(x => x.price),
           fill: true,
-          backgroundColor: "rgba(75,192,192,0.2)",
-          borderColor: "rgba(75,192,192,1)"
+          backgroundColor: "rgba(104, 136, 252,0.2)",
+          borderColor: "rgba(104, 136, 252,1)"
         },
       ]
     }),
@@ -35,11 +41,11 @@ function App() {
       labels: valuesUsd.map(x => x.date),
       datasets: [
         {
-          label: "ETHERIUM/USD",
+          label: "ETHEREUM/USD",
           data: valuesUsd.map(x => x.price),
           fill: true,
-          backgroundColor: "rgba(75,192,192,0.2)",
-          borderColor: "rgba(75,192,192,1)"
+          backgroundColor: "rgba(76, 166, 93,0.2)",
+          borderColor: "rgba(76, 166, 93,1)"
         },
       ]
     }),
@@ -79,14 +85,14 @@ function App() {
         }}
       >
         <Typography variant="h6" component="div" sx={{ textAlign: 'center', marginBottom: '10px' }}>
-          Note: Only last 10 update are displayed in the chart.
+          Note: Only last 10 updates are displayed in the chart.
         </Typography>
         <Grid item xs={12} spacing={1} container>
           <Grid item xs={6}>
-            <Line data={graphEur} />
+            <Line data={graphEur} options={options} />
           </Grid>
           <Grid item xs={6}>
-            <Line data={graphUsd} />
+            <Line data={graphUsd} options={options} />
           </Grid>
         </Grid>
       </Box>
